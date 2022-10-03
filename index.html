@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro Block Reveal Animation</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- font monument extended -->
+    <link href="http://fonts.cdnfonts.com/css/monument-extended" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="ml12">WELCOME BACK ! Abdul</h1>
+
+        <div class="blocks">
+            <li class="block-1"></li>
+            <li class="block-2"></li>
+            <li class="block-3"></li>
+            <li class="block-4"></li>
+            <li class="block-5"></li>
+            <li class="block-6"></li>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"
+        integrity="sha512-Mf/xUqfWvDIr+1B6zfnIDIiG7XHzyP/guXUWgV6PgaQoIFeXkJQR5XWh9fqAiCiRCpemabt3naV4jhDWVnuYDQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        TweenMax.staggerTo("li", 1.5, {
+            delay: 0.4,
+            ease: Expo.easeInOut,
+            scaleY: 0.3
+
+        },
+            0.1)
+
+        TweenMax.to("li", 1.5, {
+            delay: 2.8,
+            ease: Expo.easeInOut,
+            width: '10px'
+        })
+
+        TweenMax.staggerTo("li", 1.5, {
+            delay: 4.8,
+            ease: Expo.easeInOut,
+            y: '100%'
+
+        },
+            0.06)
+
+        // Wrap every letter in a span
+        var textWrapper = document.querySelector('.ml12');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({ loop: false })
+            .add({
+                targets: '.ml12 .letter',
+                translateX: [40, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 6000 + 50 * i
+            })
+            .add({
+                targets: '.ml12 .letter',
+                translateX: [0, 0],
+                opacity: [1, 0],
+                easing: "easeInExpo",
+                duration: 1100,
+                delay: (el, i) => 100 + 30 * i
+            });
+    </script>
+</body>
+
+
+</html>
